@@ -17,7 +17,7 @@
         "TradingView"
     ],
     "installer": {
-        "script": "Expand-7zipArchive -DestinationPath \"$dir\" -Removal"
+        "script": "Expand-7zipArchive -Path \"$dir\\$fname\" -DestinationPath \"$dir\" -Removal"
     },
     "checkver": {
         "script": [
