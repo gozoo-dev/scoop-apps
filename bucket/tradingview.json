@@ -1,0 +1,45 @@
+{
+    "version": "2.9.4",
+    "description": "TradingView Desktop",
+    "homepage": "https://tradingview.com/",
+    "license": {
+        "identifier": "Proprietary",
+        "url": "https://www.tradingview.com/policies/"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://tvd-packages.tradingview.com/stable/2.9.4/win32/x64/TradingView.msix",
+            "hash": "5deb1fcbe47ed0b14ce9a5fe33dc839a7e5e9ab124e360b3ab7f670609c56837"
+        }
+    },
+    "shortcuts": [
+        "TradingView.exe",
+        "TradingView"
+    ],
+    "installer": {
+        "script": "Get-ChildItem \"$dir\" '*.msix' | Select-Object -ExpandProperty Fullname | Expand-7zipArchive -DestinationPath \"$dir\" -Removal"
+    },
+    "checkver": {
+        "script": [
+            "$dl_url = \"https://tvd-packages.tradingview.com/stable/latest/win32/TradingView.msix\"",
+            "$filename = [System.IO.Path]::GetTempFileName()",
+            "$filename = [System.IO.Path]::ChangeExtension($filename, \"msix\")",
+            "Invoke-WebRequest $dl_url -OutFile $filename",
+            "$ver = Get-AppLockerFileInformation -Path $filename | Select -ExpandProperty Publisher | Select BinaryVersion",
+            "Remove-Item -Path $filename -Force",
+            "$result = \"{0}.{1}.{2}\" -f $($ver.BinaryVersion.MajorPartNumber), $($ver.BinaryVersion.MinorPartNumber), $($ver.BinaryVersion.BuildPartNumber)",
+            "Write-Host $result"
+        ],
+        "regex": "(\\S+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://tvd-packages.tradingview.com/stable/$version/win32/x64/TradingView.msix"
+            }
+        },
+        "hash": {
+            "url": "$url.sha256"
+        }
+    }
+}
