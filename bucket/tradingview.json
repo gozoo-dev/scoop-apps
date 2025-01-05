@@ -16,6 +16,9 @@
         "TradingView.exe",
         "TradingView"
     ],
+    "installer": {
+        "script": "Add-AppPackage -Path \"$dir\\$fname\""
+    },
     "checkver": {
         "script": [
             "$dl_url = \"https://tvd-packages.tradingview.com/stable/latest/win32/TradingView.msix\"",
