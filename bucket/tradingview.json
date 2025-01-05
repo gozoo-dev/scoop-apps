@@ -25,7 +25,7 @@
         ]
     },
     "installer": {
-        "script": "Add-AppPackage -Path \"$dir\\$fname\""
+        "script": "Expand-7zipArchive -Path \"$dir\\$fname\" -DestinationPath \"$dir\" -Removal"
     },
     "checkver": {
         "script": [
