@@ -16,9 +16,6 @@
         "TradingView.exe",
         "TradingView"
     ],
-    "installer": {
-        "script": "Expand-7zipArchive -Path \"$dir\\$fname\" -DestinationPath \"$dir\" -Removal"
-    },
     "checkver": {
         "script": [
             "$dl_url = \"https://tvd-packages.tradingview.com/stable/latest/win32/TradingView.msix\"",
