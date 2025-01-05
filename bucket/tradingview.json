@@ -12,6 +12,18 @@
             "hash": "5deb1fcbe47ed0b14ce9a5fe33dc839a7e5e9ab124e360b3ab7f670609c56837"
         }
     },
+    "shortcuts": [
+        [
+            "TradingView.exe",
+            "TradingView"
+        ]
+    ],
+    "post_install": {
+        "script": [
+            "$winver = [Environment]::OSVersion.Version",
+            "if (($winver.Major -lt 10) -or ($winver.Build -lt 19042)) { warn \"At least Windows 10 20H2 (build 19042) is required.\" }"
+        ]
+    },
     "installer": {
         "script": "Add-AppPackage -Path \"$dir\\$fname\""
     },
