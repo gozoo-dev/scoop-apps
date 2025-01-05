@@ -17,7 +17,7 @@
         "TradingView"
     ],
     "installer": {
-        "script": "Get-ChildItem \"$dir\" '*.msix' | Select-Object -ExpandProperty Fullname | Expand-7zipArchive -DestinationPath \"$dir\" -Removal"
+        "script": "Expand-7zipArchive -DestinationPath \"$dir\" -Removal"
     },
     "checkver": {
         "script": [
