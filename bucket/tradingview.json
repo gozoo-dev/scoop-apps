@@ -18,12 +18,10 @@
             "TradingView"
         ]
     ],
-    "post_install": {
-        "script": [
-            "$winver = [Environment]::OSVersion.Version",
-            "if (($winver.Major -lt 10) -or ($winver.Build -lt 19042)) { warn \"At least Windows 10 20H2 (build 19042) is required.\" }"
-        ]
-    },
+    "pre_install": [
+        "$winver = [Environment]::OSVersion.Version",
+        "if (($winver.Major -lt 10) -or ($winver.Build -lt 19042)) { warn \"At least Windows 10 20H2 (build 19042) is required.\" }"
+    ],
     "installer": {
         "script": "Expand-7zipArchive -Path \"$dir\\$fname\" -DestinationPath \"$dir\" -Removal"
     },
