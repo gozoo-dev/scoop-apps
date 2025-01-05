@@ -12,10 +12,6 @@
             "hash": "5deb1fcbe47ed0b14ce9a5fe33dc839a7e5e9ab124e360b3ab7f670609c56837"
         }
     },
-    "shortcuts": [
-        "TradingView.exe",
-        "TradingView"
-    ],
     "installer": {
         "script": "Add-AppPackage -Path \"$dir\\$fname\""
     },
