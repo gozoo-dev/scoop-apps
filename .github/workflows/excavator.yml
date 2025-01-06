@@ -8,10 +8,25 @@ jobs:
   excavate:
     name: Excavate
     runs-on: windows-latest
+    permissions:
+      actions: write
+      attestations: write
+      checks: write
+      contents: write
+      deployments: write
+      discussions: write
+      issues: write
+      metadata: read
+      packages: write
+      pages: write
+      pull-requests: write
+      repository-projects: write
+      security-events: write
+      statuses: write
     steps:
       - uses: actions/checkout@main
       - name: Excavate
         uses: ScoopInstaller/GithubActions@main
         env:
-          GITHUB_TOKEN: ${{ secrets.SCOOP_GITHUB_TOKEN }}
+          #GITHUB_TOKEN: ${{ secrets.SCOOP_GITHUB_TOKEN }}
           SKIP_UPDATED: 1
