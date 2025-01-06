@@ -1,0 +1,25 @@
+{
+    "version": "12.1.2.2662",
+    "description": "迅雷",
+    "homepage": "https://www.xunlei.com/",
+    "license": {
+        "identifier": "Proprietary",
+        "url": "https://i.xunlei.com/policy/all_product.html"
+    },
+    "url": "https://down.sandai.net/thunder11/XunLeiSetup12.1.2.2662.exe#/dl.7z",
+    "hash": "858f317c1c26dea688fd541dc8443b55133f88d36544a87a473583b5a196c496",
+    "post_install": "Remove-Item \"$dir\\`$*\" -Force -Recurse",
+    "shortcuts": [
+        [
+            "Thunder.exe",
+            "迅雷"
+        ]
+    ],
+    "checkver": {
+        "url": "https://pc.xunlei.com/",
+        "regex": "https://down.sandai.net/thunder11/XunLeiSetup(\\d+.\\d+.\\d+.\\d+).exe"
+    },
+    "autoupdate": {
+        "url": "https://down.sandai.net/thunder11/XunLeiSetup$version.exe#/dl.7z"
+    }
+}
