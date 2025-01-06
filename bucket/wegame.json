@@ -29,7 +29,8 @@
             "$session.UserAgent = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"",
             "$response = Invoke-WebRequest -UseBasicParsing -Uri $url -Method \"POST\" -WebSession $session -ContentType $content_type -Body $body",
             "Write-Host $response.Content"
-        ]
+        ],
+        "regex": "\"ver_name\":\"([^\"]+)\""
     },
     "autoupdate": {
         "url": "https://dldir1.qq.com/tgc/wegame/full/WeGameSetup$version_gjwegame_0_0.exe#/dl.7z"
