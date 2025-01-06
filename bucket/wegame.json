@@ -1,0 +1,32 @@
+{
+    "version": "5.9.0.12253",
+    "description": "WeGame",
+    "homepage": "https://www.wegame.com.cn/",
+    "license": {
+        "identifier": "Proprietary",
+        "url": "https://www.wegame.com.cn/contract/"
+    },
+    "url": "https://dldir1.qq.com/tgc/wegame/full/WeGameSetup5.9.0.12253_gjwegame_0_0.exe#/dl.7z",
+    "hash": "fae4184e8b1c0d399060be912ca554186262d17b55ff203d03337f09fb8f24ff",
+    "post_install": "Remove-Item \"$dir\\`$*\" -Force -Recurse",
+    "shortcuts": [
+        [
+            "wegame.exe",
+            "WeGame"
+        ]
+    ],
+    "checkver": {
+        "script": [
+            "$url = \"https://luban.m.qq.com/api/public/software-manager/softwareProxy\"",
+            "$content_type = \"application/x-www-form-urlencoded; charset=UTF-8\"",
+            "$body = \"cmdid=3318&jprxReq%5Breq%5D%5Bsoft_id_list%5D%5B%5D=23761\"",
+            "$session = New-Object Microsoft.PowerShell.Commands.WebRequestSession",
+            "$session.UserAgent = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"",
+            "$response = Invoke-WebRequest -UseBasicParsing -Uri $url -Method \"POST\" -WebSession $session -ContentType $content_type -Body $body",
+            "Write-Host $response.Content"
+        ]
+    },
+    "autoupdate": {
+        "url": "https://dldir1.qq.com/tgc/wegame/full/WeGameSetup$version_gjwegame_0_0.exe#/dl.7z"
+    }
+}
