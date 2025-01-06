@@ -8,7 +8,12 @@
     },
     "url": "https://dldir1.qq.com/tgc/wegame/full/WeGameSetup5.9.0.12253_gjwegame_0_0.exe#/dl.7z",
     "hash": "fae4184e8b1c0d399060be912ca554186262d17b55ff203d03337f09fb8f24ff",
-    "post_install": "Remove-Item \"$dir\\`$*\" -Force -Recurse",
+    "installer": {
+        "script": [
+            "Expand-7zipArchive \"$dir\\WeGameSetup.exe\" \"$dir\"",
+            "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$SYSDIR\",\"$dir\\WeGameSetup.exe\" -Force -Recurse"
+        ]
+    },
     "shortcuts": [
         [
             "wegame.exe",
