@@ -6,9 +6,13 @@ jobs:
   pullRequestHandler:
     name: PullRequestHandler
     runs-on: windows-latest
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@main
       - name: PullRequestHandler
         uses: ScoopInstaller/GithubActions@main
         env:
-          GITHUB_TOKEN: ${{ secrets.SCOOP_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

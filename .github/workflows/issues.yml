@@ -6,10 +6,14 @@ jobs:
   issueHandler:
     name: IssueHandler
     runs-on: windows-latest
+    permissions:
+      actions: write
+      contents: write
+      issues: write
     steps:
       - uses: actions/checkout@main
       - name: IssueHandler
         uses: ScoopInstaller/GithubActions@main
         if: github.event.action == 'opened' || (github.event.action == 'labeled' && contains(github.event.issue.labels.*.name, 'verify'))
         env:
-          GITHUB_TOKEN: ${{ secrets.SCOOP_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
