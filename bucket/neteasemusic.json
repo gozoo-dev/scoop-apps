@@ -1,0 +1,64 @@
+{
+    "version": "3.1.2.203359",
+    "description": "网易云音乐",
+    "homepage": "https://music.163.com/",
+    "license": {
+        "identifier": "Proprietary",
+        "url": "https://st.music.163.com/official-terms/service"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://d8.music.126.net/dmusic/NeteaseCloudMusic_Music_official_3.1.2.203359_64.exe#/dl.7z",
+            "hash": "6dc5dc11cdb617a884186f16f5ff7a93533c61fcf956e760cc1a8d74e87df023"
+        },
+        "32bit": {
+            "url": "https://d8.music.126.net/dmusic/NeteaseCloudMusic_Music_official_3.1.2.203359_32.exe#/dl.7z",
+            "hash": "8e991573f0f918b499198ebdbf608b98d5675fb658aadaf011ec9eb4fef329ca"
+        }
+    },
+    "installer": {
+        "script": [
+            "Get-ChildItem \"$dir\\redist_packages\" | Move-Item -Destination \"$dir\" -Force",
+            "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/DoradoUtils.psm1)",
+            "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:LOCALAPPDATA\\Netease\\CloudMusic\"",
+            "Remove-Module -Name DoradoUtils"
+        ]
+    },
+    "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\",\"$dir\\redist_packages\" -Force -Recurse",
+    "uninstaller": {
+        "script": [
+            "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/DoradoUtils.psm1)",
+            "Dismount-ExternalRuntimeData -Target \"$env:LOCALAPPDATA\\Netease\\CloudMusic\"",
+            "Remove-Module -Name DoradoUtils"
+        ]
+    },
+    "shortcuts": [
+        [
+            "cloudmusic.exe",
+            "网易云音乐"
+        ]
+    ],
+    "checkver": {
+        "script": [
+            "$url = \"https://music.163.com/weapi/appcustomconfig/get\"",
+            "$content_type = \"application/x-www-form-urlencoded\"",
+            "$headers =  @{ \"x-requested-with\"=\"XMLHttpRequest\" }",
+            "$body = \"params=wyavKBGWd8bplr0hHsHX%2FXlZUWw7207GUe2judRqzWLDkM73syYSfFsdzVjj2%2B49&encSecKey=c3714e2eafa7f52375f517932f9bab062a3e6f954e81493e1dbae86646660d2fc49a386da937aaffa5a7bc8fa26e973f89e8e4b9d0991b779e9210ac334081762c7b0b70fce31f9023094af6bf8b9c45593f45ff86a8704683401810599952110c84ebb689713b747a32ab375ca30c17231ec1b4da0a83c47c2726183296d845\"",
+            "$session = New-Object Microsoft.PowerShell.Commands.WebRequestSession",
+            "$session.UserAgent = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"",
+            "$response = Invoke-WebRequest -UseBasicParsing -Uri $url -Method \"POST\" -WebSession $session -Headers $headers -ContentType $content_type -Body $body",
+            "Write-Host $response.Content"
+        ],
+        "regex": "NeteaseCloudMusic_Music_official_(\\d+.\\d+.\\d+.\\d+)_64.exe"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://d8.music.126.net/dmusic/NeteaseCloudMusic_Music_official_$version_64.exe#/dl.7z"
+            },
+            "32bit": {
+                "url": "https://d8.music.126.net/dmusic/NeteaseCloudMusic_Music_official_$version_32.exe#/dl.7z"
+            }
+        }
+    }
+}
