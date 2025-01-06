@@ -1,5 +1,5 @@
 {
-    "version": "2.9.4",
+    "version": "2.9.4.6649",
     "description": "TradingView Desktop",
     "homepage": "https://tradingview.com/",
     "license": {
@@ -33,15 +33,15 @@
             "Invoke-WebRequest $dl_url -OutFile $filename",
             "$ver = Get-AppLockerFileInformation -Path $filename | Select -ExpandProperty Publisher | Select BinaryVersion",
             "Remove-Item -Path $filename -Force",
-            "$result = \"{0}.{1}.{2}\" -f $($ver.BinaryVersion.MajorPartNumber), $($ver.BinaryVersion.MinorPartNumber), $($ver.BinaryVersion.BuildPartNumber)",
-            "Write-Host $result"
+            "Write-Host $ver.BinaryVersion"
         ],
-        "regex": "(\\S+)"
+        "regex": "(\\d+.\\d+.\\d+).(\\d+)",
+        "replace": "${1}.${2}"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://tvd-packages.tradingview.com/stable/$version/win32/x64/TradingView.msix"
+                "url": "https://tvd-packages.tradingview.com/stable/$match1/win32/x64/TradingView.msix"
             }
         },
         "hash": {
