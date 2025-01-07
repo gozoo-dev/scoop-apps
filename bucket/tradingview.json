@@ -43,9 +43,6 @@
             "64bit": {
                 "url": "https://tvd-packages.tradingview.com/stable/$match1/win32/x64/TradingView.msix"
             }
-        },
-        "hash": {
-            "url": "$url.sha256"
         }
     }
 }
