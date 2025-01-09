@@ -9,11 +9,10 @@
     "url": "https://down.sandai.net/thunder11/XunLeiSetup12.1.2.2662.exe#/dl.7z",
     "hash": "858f317c1c26dea688fd541dc8443b55133f88d36544a87a473583b5a196c496",
     "installer": {
-        "script": "Start-Process -Wait \"$dir\\setup.exe\" \"/S /D=$dir\" -Verb RunAs"
+        "script": "Start-Process -Wait \"$dir\\Program\\XLWFPSetup.exe\" \"/S /D=$dir\" -Verb RunAs"
     },
-    "post_install": "Remove-Item \"$dir\\`$*\" -Force -Recurse",
     "uninstaller": {
-        "script": "Start-Process -Wait \"$dir\\Uninstall.exe\" \"/S\" -Verb RunAs"
+        "script": "Start-Process -Wait \"$dir\\Program\\ThunderUninstall.exe\" \"/S\" -Verb RunAs"
     },
     "shortcuts": [
         [
